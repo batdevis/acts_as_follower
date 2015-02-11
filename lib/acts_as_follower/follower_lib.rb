@@ -28,7 +28,13 @@ module ActsAsFollower
         scope = scope.order(options[:order])
       end
       if options.has_key?(:select)
-        scope = scope.select(options[:select])
+        evergreen_fields = [:followable_type, :followable_id]
+        if options[:select].is_a?(Array)
+          select =  options[:select] + evergreen_fields
+        else
+          select = options[:select] + ",followable_type, followable_id"
+        end
+        scope = scope.select(select)
       end
       scope
     end
