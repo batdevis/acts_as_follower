@@ -27,6 +27,9 @@ module ActsAsFollower
       if options.has_key?(:order)
         scope = scope.order(options[:order])
       end
+      if options.has_key?(:select)
+        scope = scope.select(options[:select])
+      end
       scope
     end
   end
