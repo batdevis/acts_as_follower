@@ -32,7 +32,7 @@ module ActsAsFollower
         if options[:select].is_a?(Array)
           select =  options[:select] + evergreen_fields
         else
-          select = options[:select] + ",followable_type, followable_id"
+          select = "#{options[:select]}, followable_type, followable_id"
         end
         scope = scope.select(select)
       end
